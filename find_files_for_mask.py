@@ -6,6 +6,7 @@ import argparse
 from find_string_in_file import find_string_in_file
 
 def parse_arguments():
+    parser = argparse.ArgumentParser()
     parser.add_argument("mask", type=str)
     parser.add_argument("id", type=int)
 

@@ -1,4 +1,5 @@
 import argparse
+import subprocess
 
 from find_files_for_mask import find_all_need_strings
 
@@ -14,10 +15,9 @@ def parse_arguments():
     args = parser.parse_args()
     return args
 
-def run_on_ssh(id, ip, credentials, mask):
-    ssh credentials[0]@ip "python ./grep.py mask id"
+def run_on_ssh(_id, ip, credentials, mask):
+    subprocess.call('ssh {0}@{1} "python find_files_for_mask.py {2} {3}"'.format(credentials[0], ip, mask, _id))
 
-
-def __name__ == "__main__":
+if __name__ == "__main__":
     args = parse_arguments()
-    run_on_ssh(args.id, get_credentials(args.ip), args.mask)
+    run_on_ssh(args.id, args.ip, get_credentials(args.ip), args.mask)
